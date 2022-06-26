@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block page %}
+    <h1>Active Rooms</h1>
+    {% for room in rooms %}
+        <h2>@{{ room.host.username}}</h2>
+        <h2>{{ room.name }}</h2>
+        <h3>{{ room.description }}</h3>
+        <a href="{% url 'create-room' %}">edit</a>
+        <a href="{% url 'delete-room' %}">delete</a>
+
+    {% endfor %}
+
+
+{% endblock page %}
