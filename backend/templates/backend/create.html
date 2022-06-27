@@ -2,6 +2,9 @@
 
 {% block page %}
 
-<h1>This is the create page</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
 
 {% endblock page %}

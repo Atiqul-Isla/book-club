@@ -1,13 +1,17 @@
 {% extends 'index.html' %}
 
 {% block page %}
+
     <h1>Active Rooms</h1>
+    <!-- Parsing through all the data in the Room model and showing it in the frontend -->
     {% for room in rooms %}
         <h2>@{{ room.host.username}}</h2>
+        <h5>created: {{ room.date_created }}</h5>
         <h2>{{ room.name }}</h2>
         <h3>{{ room.description }}</h3>
-        <a href="{% url 'create-room' %}">edit</a>
-        <a href="{% url 'delete-room' %}">delete</a>
+        <a>Enter Discussion</a>
+        <a href="{% url 'edit-room' room.id %}">edit</a>
+        <a href="{% url 'delete-room' room.id %}">delete</a>
 
     {% endfor %}
 

@@ -2,6 +2,10 @@
 
 {% block page %}
 
-<h1>This is the delete page</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+    <h1>Are you sure you want to delete?</h1>
+    <input type="submit" value="yes">
+    <a href="{% url 'home' %}">No, Take me back</a>
 
 {% endblock page %}
