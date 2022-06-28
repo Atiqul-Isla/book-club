@@ -2,6 +2,7 @@
 
 {% block page %}
 
+<!-- {% if request.user.is_authenticated %} -->
     <h1>Active Rooms</h1>
     <!-- Parsing through all the data in the Room model and showing it in the frontend -->
     {% for room in rooms %}
@@ -14,6 +15,7 @@
         <a href="{% url 'delete-room' room.id %}">delete</a>
 
     {% endfor %}
+<!-- {% endif %} -->
 
 
 {% endblock page %}
