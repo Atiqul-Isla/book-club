@@ -1,10 +1,9 @@
 {% if request.user.is_authenticated %}
 <a href="{% url 'home' %}">LOGO</a>
-<a href="{% url 'create-room' %}">create</a>
+<a href="{% url 'create-room' %}">Create Room</a>
+<a href="{% url 'my-rooms' %}">My Rooms</a>
 <a href="{% url 'logout' %}">Log Out</a>
+
 <h5>{{request.user}}</h5>
-{% else %}
-<a href="{% url 'landing-page' %}">LOGO</a>
-<a href="{% url 'login' %}">Log In</a>
     
 {% endif %}

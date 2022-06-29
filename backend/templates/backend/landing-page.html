@@ -1,6 +1,37 @@
 {% extends 'index.html' %}
 
 {% block page %}
-    <h1>Hello Welcome to bookclub</h1>
+    <div class="container backgroundImage">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar">
+                    <div class="navbar-brand">
+                        BOOKLUB
+                    </div>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                    </ul>
+            </div>
+            <div class="col-mid-12">
+                <h1 class="text-center">Welcome to BOOKLUB</h1>
+                <a href="{% url 'login' %}" class="btn btn-primary text-center">Get Started</a>
+
+            </div>
+        </div>
+    </div>
+       
+    <style>
+        .backgroundImage{
+            height: 100vh;
+            width: 100%;
+            background-image: url(back-img1.jpeg);
+            background-position: top;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+            
 
 {% endblock page %}

@@ -6,4 +6,5 @@
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="log in">
+        <a href="{% url 'landing-page' %}">Take me back</a>
 {% endblock page %}
