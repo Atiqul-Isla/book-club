@@ -2,19 +2,26 @@
 
 {% block page %}
 
+<!-- Styled this page to reflect home.html -->
+<div class="bg-container-custom">
+    <div class="container-fluid center-column-home">
+        <h1 class="text-center mt-2 mb-2">My Rooms</h1>
+        <hr>
+        <!-- Parsing through all the data in the Room model and showing it in the frontend -->
+        {% for room in rooms %}
+            <div class="item-row">
+                <h2>{{ room.name }}</h2>
+                <h5>created: {{ room.date_created }}</h5>
+                <h3>{{ room.description }}</h3>
+                <a>Enter Discussion</a>
+                <a href="{% url 'edit-room' room.id %}">edit</a>
+                <a href="{% url 'delete-room' room.id %}">delete</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
-    <h1>My Rooms</h1>
-    <!-- Parsing through all the data in the Room model and showing it in the frontend -->
-    {% for room in rooms %}
-        
-        <h2>{{ room.name }}</h2>
-        <h5>created: {{ room.date_created }}</h5>
-        <h3>{{ room.description }}</h3>
-        <a>Enter Discussion</a>
-        <a href="{% url 'edit-room' room.id %}">edit</a>
-        <a href="{% url 'delete-room' room.id %}">delete</a>
-
-    {% endfor %}
+  
 
 
 

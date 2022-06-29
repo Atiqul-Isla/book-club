@@ -1,14 +1,17 @@
 {% extends 'index.html' %}
 
 {% block page %}
+<!-- Added form group so the login form can be styled via widgets -->
     <div class="container-fluid banner">
         <div class="center-column">
             <h1>Login</h1>
-            <form method="POST" action="">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="log in">
-                <a href="{% url 'landing-page' %}">Take me back</a>
+            <div class="form-group">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="log in">
+                    <a href="{% url 'landing-page' %}">Take me back</a>
+            </div>
         </div>
     </div>
     

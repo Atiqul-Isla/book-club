@@ -47,14 +47,12 @@ class myRooms(LoginRequiredMixin, ListView):
         context['rooms']= context['rooms'].filter(host=self.request.user)
         return context
 
-## Creating a function that creates new discussion room using POST request
-
+## Class based view that takes the roomForm and uses POST requests. This class also hasa  function that determines which user is creating the form
 class createRoom(LoginRequiredMixin, CreateView):
     template_name = 'backend/create.html'
-    fields = ['name', 'description']
-    model = models.Room
+    form_class = forms.roomForm
     success_url = reverse_lazy('home')
-
+    form = models.Room
     def form_valid(self, form):
         form.instance.host = self.request.user
         return super(createRoom, self).form_valid(form)
@@ -68,7 +66,7 @@ def deleteRoom(request, key):
     context = {'room':room}
     if request.method == 'POST':
         room.delete()
-        return redirect('home')
+        return redirect('my-rooms')
     return render(request, 'backend/delete.html', context)
 
 ## Class based view to create updateRoom functionality for individual users
@@ -76,7 +74,7 @@ class updateRoom(LoginRequiredMixin, UpdateView):
     template_name = 'backend/create.html'
     fields = ['name', 'description']
     model = models.Room
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('my-rooms')
 
     def get_queryset(self, **kwargs):
         return models.Room.objects.filter(id=self.kwargs['pk'])

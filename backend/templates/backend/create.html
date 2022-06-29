@@ -2,9 +2,15 @@
 
 {% block page %}
 
-<form method="POST" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
+<!-- Added the form-group class to this page to access Bootstrap styling for forms -->
+<div class="">
+    <h2>Start A Discussion...</h2>
+    <div class="form-group">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Create">
+    </div>
+</div>
 
 {% endblock page %}
