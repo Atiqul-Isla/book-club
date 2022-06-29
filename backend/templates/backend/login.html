@@ -1,10 +1,15 @@
 {% extends 'index.html' %}
 
 {% block page %}
-    <h1>Login</h1>
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="log in">
-        <a href="{% url 'landing-page' %}">Take me back</a>
+    <div class="container-fluid banner">
+        <div class="center-column">
+            <h1>Login</h1>
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="log in">
+                <a href="{% url 'landing-page' %}">Take me back</a>
+        </div>
+    </div>
+    
 {% endblock page %}
