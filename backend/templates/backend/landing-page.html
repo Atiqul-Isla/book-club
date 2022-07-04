@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block page %} 
+
+{% if not request.user.is_authenticated %}
     <!-- Added a basic navbar template to style the landing page navbar using Bootstrap -->
     <div class="container-fluid banner">
         <div class="row footerSpacing">
@@ -23,7 +25,7 @@
             <div class="container">
                 <h1 class="text-center" style="color: white;">Welcome to <strong style="font-family: 'OCR A Std', monospace; color: var(--secondary);">BOOKLUB</strong></h1>
                 <div class="col text-center">
-                    <a type="button" class="btn btn-outline-light mt-3 rounded-pill justify" data-mdb-ripple-color="dark" href="{% url 'login' %}">
+                    <a type="button" class="btn btn-outline-light mt-3 rounded-pill justify" data-mdb-ripple-color="dark" href="{% url 'register' %}">
                         Register Now
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
@@ -36,7 +38,7 @@
         </div>
         <footer class="footer text-center" style="color: white;">@2022 Atiqul Islam, All Rights Reserved</footer>
     </div>
-       
-            
+{% endif %}
+
 
 {% endblock page %}

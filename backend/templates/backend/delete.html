@@ -2,10 +2,19 @@
 
 {% block page %}
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <h1>Are you sure you want to delete?</h1>
-    <input type="submit" value="yes">
-    <a href="{% url 'home' %}">No, Take me back</a>
+<div class="container-fluid center-column" style="background-color: var(--secondary); width: 30vw;">
+    <div class="col">
+        <div class="row">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <h4>Are you sure you want to delete?</h4>
+                <input type="submit" value="yes">
+        </div>
+        <hr>
+        <div class="row">
+            <a href="{% url 'my-rooms' %}">No, Take me back</a>
+        </div>
+    </div>
+</div>
 
 {% endblock page %}

@@ -1,7 +1,7 @@
 /* This file stores all my custom styles that are used outside of Bootsrap */
 
 :root {
-    --dark-text: #1D201D;
+    --dark-text: #225e22;
     --primary: #728C81;
     --secondary: #d6deda;
     --tirtiary: #f7f3e7;
@@ -73,7 +73,15 @@ body{
     background-color: var(--primary);
     border-radius: 3px;
     box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
-    color:#1D201D;
+  } 
+
+.column-register{ 
+    width: 400px;
+    margin: 30vh auto;
+    padding: 25px;
+    background-color: var(--primary);
+    border-radius: 3px;
+    box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
   } 
 
 .item-row{
@@ -81,7 +89,6 @@ body{
     margin: 20px;
     padding: 20px;
     border-radius: 5px;
-    color: black;
     font-size: 1em;
     box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
   }
@@ -96,8 +103,6 @@ body{
   }
 
   .center-column-home {
-    /* margin: 20px auto; */
-    /* padding: 20px; */
     width: 80vw;
   }
 

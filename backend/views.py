@@ -1,25 +1,51 @@
+## Django.views.generic libraries for CRUD functionality
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, FormView
+
+## Functins that render views and redirect users
 from django.shortcuts import render, redirect
+
+## Importing personally created models and forms
 from . import models
 from . import forms
+
+## Djang.urls for redirecting
 from django.urls import reverse_lazy
+
+## Django.contrib.auth libraries for user authentication
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
 
 
 
 # Create your views here.
 
 ## Class based view that handles user authentication from the LoginView library
-class login(LoginView):
+class loginPage(LoginView):
     template_name = 'backend/login.html'
     fields = '__all__'
+    form_class = forms.CustomAuthForm
     redirect_authenticated_user = True
 
     def get_success_url(self):
         return reverse_lazy('home')
+
+class Register(FormView):
+    template_name = 'backend/register.html'
+    form_class = forms.RegisterForm
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super(Register, self).form_valid(form)
+
 
 ## Function based view for a landing page that all non logged in users are directed to
 def landingPage(request):
@@ -72,8 +98,8 @@ def deleteRoom(request, key):
 ## Class based view to create updateRoom functionality for individual users
 class updateRoom(LoginRequiredMixin, UpdateView):
     template_name = 'backend/create.html'
-    fields = ['name', 'description']
-    model = models.Room
+    form_class = forms.roomForm
+    form = models.Room
     success_url = reverse_lazy('my-rooms')
 
     def get_queryset(self, **kwargs):

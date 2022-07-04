@@ -1,15 +1,17 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import login, myRooms, createRoom, updateRoom, home
+from .views import Register, loginPage, myRooms, createRoom, updateRoom, home
 from django.contrib.auth.views import LogoutView
+from .forms import CustomAuthForm
 
 ## Routing urls to different templates
 urlpatterns = [
-    path('', views.landingPage, name='landing-page'),
-    path('log-in', login.as_view(), name='login'),
+    path('landing-page', views.landingPage, name='landing-page'),
+    path('log-in', loginPage.as_view(), name='login', kwargs={"authentication_form":CustomAuthForm}),
     path('log-out', LogoutView.as_view(next_page='/'), name='logout'),
-    path('home', home.as_view(), name='home'),
+    path('register', Register.as_view(), name='register'),
+    path('', home.as_view(), name='home'),
     path('my-rooms', myRooms.as_view(), name='my-rooms'),
     path('create-room', createRoom.as_view(), name='create-room'),
     path(r'^edit-room/(?P<pk>\d+)/$', updateRoom.as_view(), name='edit-room'),

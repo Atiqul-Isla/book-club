@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block page %}        
+
+<div class="container-fluid banner">
+    <div class="center-column-register" style="background-color: var(--secondary);">
+        <h2 class="text-center" style="color: var(--dark-text);">Register</h2>
+        <div class="form-group">
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn btn-primary" type="submit" value="log in" class="center">
+                <hr>
+                <p class="text-center">If you already have an account, <a href="{% url 'login' %}">login</a> instead.</p>
+                <p class="text-center">Nevermind, take me <a href="{% url 'landing-page' %}">back</a></p>
+                
+        </div>
+    </div>
+</div>
+
+{% endblock page %}

@@ -2,6 +2,8 @@
 
 {% block page %}
 
+{% if request.user.is_authenticated %}
+
 <!-- Added custom container classes to create a styled design -->
 <div class="bg-container-custom">
     <div class="container-fluid center-column-home">
@@ -9,16 +11,18 @@
             <!-- Parsing through all the data in the Room model and showing it in the frontend -->
             {% for room in rooms %}
             <div class="item-row">
-                <h2>{{ room.name }}</h2>
-                <h3>@{{ room.host.username }}</h3>
-                <h5>created: {{ room.date_created }}</h5>
-                <h3>{{ room.description }}</h3>
-                <a>Enter Discussion</a>
+                <h2 style="color: var(--dark-text);">{{ room.name }}</h2>
+                <div class="row pl-3"><h5>@{{ room.host.username }}</h5>&nbsp;-&nbsp;<h5>{{ room.date_created }}</h5>
+            </div>
+                <a>Enter</a>
+                <h4 class="pt-3">{{ room.description|linebreaks }}</h4>
             </div>
             {% endfor %}
        
     </div>
 </div>
+{% endif %}
+
 
     
 
