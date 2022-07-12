@@ -39,6 +39,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    ## Adding channels
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +51,14 @@ INSTALLED_APPS = [
     ## Adding the backend app to settings config
     'backend.apps.BackendConfig',
 ]
+
+## Setting ASGI_APPLICATION to run the server
+ASGI_APPLICATION = 'board.asgi.application'
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

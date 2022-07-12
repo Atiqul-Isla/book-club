@@ -87,8 +87,8 @@ class createRoom(LoginRequiredMixin, CreateView):
 
 ## Creating a function that deletes existing discussion rooms using POST request
 @login_required()
-def deleteRoom(request, key):
-    room = models.Room.objects.get(id=key)
+def deleteRoom(request, pk):
+    room = models.Room.objects.get(id=pk)
     context = {'room':room}
     if request.method == 'POST':
         room.delete()
@@ -109,4 +109,16 @@ class updateRoom(LoginRequiredMixin, UpdateView):
         form.instance.host = self.request.user
         return super(updateRoom, self).form_valid(form)
 
+## Class based view to create the chatroom render
 
+# class ChatRoom(LoginRequiredMixin, ListView):
+#     template_name = 'backend/lobby.html'
+#     model = models.Room 
+#     context_object_name = 'rooms'
+
+#     def get_queryset(self, **kwargs):
+#         return models.Room.objects.filter(id=self.kwargs['pk'])
+
+@login_required()
+def ChatRoom(request, pk):
+    return render(request, 'backend/lobby.html', {'pk':pk})
