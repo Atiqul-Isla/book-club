@@ -12,10 +12,10 @@
             {% for room in rooms %}
             <div class="item-row">
                 <h2 style="color: var(--dark-text);">{{ room.name }}</h2>
-                <div class="row pl-3"><h5>@{{ room.host.username }}</h5>&nbsp;-&nbsp;<h5>{{ room.date_created }}</h5>
-            </div>
+                <h4>Book: {{ room.book.name }}</h4>
+                <div class="row pl-3"><h5>@{{ room.host.username }}</h5>&nbsp;-&nbsp;<h5>{{ room.date_created }}</h5></div>
                 <a href="{% url 'chat-room' room.id %}">Enter</a>
-                <h4 class="pt-3">{{ room.description|linebreaks }}</h4>
+                <h5 class="pt-3">{{ room.description|linebreaks }}</h5>
             </div>
             {% endfor %}
        

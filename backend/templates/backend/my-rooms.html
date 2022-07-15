@@ -11,6 +11,7 @@
         {% for room in rooms %}
             <div class="item-row">
                 <h2 style="color: var(--dark-text);">{{ room.name }}</h2>
+                <h4>Book: {{ room.book.name }}</h4>
                 <h5>created: {{ room.date_created }}</h5>
                 <a href="{% url 'chat-room' room.id %}">Enter</a>
                 <a href="{% url 'edit-room' room.id %}">edit</a>

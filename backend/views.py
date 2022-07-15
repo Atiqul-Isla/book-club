@@ -109,16 +109,34 @@ class updateRoom(LoginRequiredMixin, UpdateView):
         form.instance.host = self.request.user
         return super(updateRoom, self).form_valid(form)
 
-## Class based view to create the chatroom render
-
-# class ChatRoom(LoginRequiredMixin, ListView):
-#     template_name = 'backend/lobby.html'
-#     model = models.Room 
-#     context_object_name = 'rooms'
-
-#     def get_queryset(self, **kwargs):
-#         return models.Room.objects.filter(id=self.kwargs['pk'])
-
 @login_required()
 def ChatRoom(request, pk):
     return render(request, 'backend/lobby.html', {'pk':pk})
+
+class RegisterBook(LoginRequiredMixin, CreateView):
+    template_name = 'backend/create.html'
+    form_class = forms.RegisterBookForm
+    success_url = reverse_lazy('home')
+    form = models.Book
+    def form_valid(self, form):
+        form.instance.host = self.request.user
+        return super(RegisterBook, self).form_valid(form)
+
+class MyBooks(LoginRequiredMixin, ListView):
+    template_name = 'backend/my-books.html'
+    model = models.Book
+    context_object_name = 'books'
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books']= context['books'].filter(host=self.request.user)
+        return context
+
+@login_required()
+def DeleteBook(request, pk):
+    book = models.Book.objects.get(id=pk)
+    context = {'book':book}
+    if request.method == 'POST':
+        book.delete()
+        return redirect('my-books')
+    return render(request, 'backend/delete.html', context)

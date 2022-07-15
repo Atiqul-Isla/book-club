@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block page %}
+
+<!-- Styled this page to reflect home.html -->
+<div class="bg-container-custom">
+    <div class="container-fluid center-column-home">
+        <h1 class="text-center mt-2 mb-2">My Books</h1>
+        <hr>
+        <!-- Parsing through all the data in the Book model and showing it in the frontend -->
+        {% for book in books %}
+            <div class="item-row">
+                <h2 style="color: var(--dark-text);">{{ book.name }}</h2>
+                <h5>author: {{ book.author }}</h5>
+                <h5>genres: {{ book.genre }}</h5>
+                <h5>My Rating: {{ book.rating }}</h5>
+                <a href="{% url 'delete-book' book.id %}">delete</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock page %}
