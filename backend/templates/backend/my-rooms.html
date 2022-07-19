@@ -9,14 +9,19 @@
         <hr>
         <!-- Parsing through all the data in the Room model and showing it in the frontend -->
         {% for room in rooms %}
-            <div class="item-row">
-                <h2 style="color: var(--dark-text);">{{ room.name }}</h2>
-                <h4>Book: {{ room.book.name }}</h4>
-                <h5>created: {{ room.date_created }}</h5>
-                <a href="{% url 'chat-room' room.id %}">Enter</a>
-                <a href="{% url 'edit-room' room.id %}">edit</a>
-                <a href="{% url 'delete-room' room.id %}">delete</a>
-                <h4 class="pt-3">{{ room.description|linebreaks }}</h4>
+            <div class="item-row row">
+                <div class="col-md-3">
+                    <img src={{ room.book.image.url }} class="img-fluid">
+                </div>
+                <div class="col-md-8">
+                    <h2 style="color: var(--dark-text);">{{ room.name }}</h2>
+                    <h4>Book: {{ room.book.name }}</h4>
+                    <h5>created: {{ room.date_created }}</h5>
+                    <a href="{% url 'chat-room' room.id %}">Enter</a>
+                    <a href="{% url 'edit-room' room.id %}">edit</a>
+                    <a href="{% url 'delete-room' room.id %}">delete</a>
+                    <h4 class="pt-3">{{ room.description|linebreaks }}</h4>
+                </div>
             </div>
         {% endfor %}
     </div>

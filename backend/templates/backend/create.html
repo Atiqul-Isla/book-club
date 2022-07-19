@@ -7,10 +7,10 @@
     <div class="pb-5"></div>
     <h2>Fill in the necessary information...</h2>
     <div class="form-group pt-5">
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Create">
+            <input class="btn btn-primary" type="submit" value="Create">
     </div>
 </div>
 

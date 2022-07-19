@@ -3,11 +3,26 @@
 {% block page %}
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-6">
+            <div class="col-md-3">
                 <form>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1" class="h4 pt-5">Chatroom</label>
-                        <textarea class="form-control" id="chat-text" rows="10" readonly></textarea><br>
+                        <div class="bg-light pl-2 pr-2">
+                            <textarea class="form-control" id="chat-text" rows="10" readonly>
+                                {% for chat in chats.all %}
+                                    {{chat.user}}: {{ chat.message }} 
+                                {% endfor %}
+                            </textarea><br>
+                            <!-- <div id="chat-text">
+                                {% for chat in chats.all %}
+                                <div>
+                                    {{chat.user}}: {{ chat.message }}
+                                </div>
+                                {% endfor %}
+
+                            </div> -->
+
+                        </div>
                     </div>
                     <div class="form-group">
                         <input class="form-control" id="input" type="text"></br>
@@ -22,17 +37,21 @@
     {{ request.user.username|json_script:"user_username" }}
     {{ pk|json_script:'pk'}}
     <script>
+        // const ChatLog = document.querySelector('#chat-text')
         const user_username = JSON.parse(document.getElementById('user_username').textContent);
+
         document.querySelector('#submit').onclick = function (e) {
             const messageInputDom = document.querySelector('#input')
             const message = messageInputDom.value;
             chatSocket.send(JSON.stringify({
                 'message': message,
+                'username': user_username,
             }));
             messageInputDom.value = '';
         }
 
         const id = JSON.parse(document.getElementById('pk').textContent);
+        const username = JSON.parse(document.getElementById('user_username').textContent);
         const chatSocket = new WebSocket(
             'ws://' +
             window.location.host +
@@ -43,8 +62,16 @@
 
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
+            // const messageElement = document.createElement('div')
+            // const userElement = document.createElement('div')
+            // messageElement.innerText = data.message
+            // userElement.innerText = data.user_username
+            // messageElement.className = 'message'
+            // userElement.className = 'username'
+            // ChatLog.appendChild(userElement + messageElement)
             console.log(data)
-            document.querySelector('#chat-text').value += (data.message + '\n')
+            document.querySelector('#chat-text').value += (data.username + ': ' + data.message)
+
         }
 
     </script>

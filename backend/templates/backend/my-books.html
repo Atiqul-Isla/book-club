@@ -9,12 +9,18 @@
         <hr>
         <!-- Parsing through all the data in the Book model and showing it in the frontend -->
         {% for book in books %}
-            <div class="item-row">
-                <h2 style="color: var(--dark-text);">{{ book.name }}</h2>
-                <h5>author: {{ book.author }}</h5>
-                <h5>genres: {{ book.genre }}</h5>
-                <h5>My Rating: {{ book.rating }}</h5>
-                <a href="{% url 'delete-book' book.id %}">delete</a>
+            <div class="item-row row">
+                <div class="col-md-3">
+                    <img src={{ book.image.url }} class="img-fluid">
+                </div>
+                <div class="col-md-8">
+                    <h2 style="color: var(--dark-text);">{{ book.name }}</h2>
+                    <h5>author: {{ book.author }}</h5>
+                    <h5>genres: {{ book.genre }}</h5>
+                    <h5>My Rating: {{ book.rating }}</h5>
+                    <a href="{% url 'delete-book' book.id %}">delete</a>
+                </div>
+                
             </div>
         {% endfor %}
     </div>

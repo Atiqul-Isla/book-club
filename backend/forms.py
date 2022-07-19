@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.forms import ModelForm 
 from django.contrib.auth.forms import AuthenticationForm 
 from .models import Room, Book
@@ -14,6 +15,7 @@ class roomForm(ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your topic name here...'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter a brief description of your task here...'}),
+            'book': forms.Select(attrs={'class': 'form-control', 'placeholder': 'What book are you discussing?'}), 
         }
 
 class CustomAuthForm(AuthenticationForm):
@@ -34,15 +36,15 @@ class RegisterForm(UserCreationForm):
         self.fields['password2'].widget.attrs['class'] = 'form-control'
 
 class RegisterBookForm(ModelForm):
+    image = forms.ImageField(required = False)
     class Meta:
         model = Book
-        fields = ['name', 'author', 'genre', 'rating']
+        fields = ['name', 'author', 'genre', 'image']
 
         ##Setting widgets to connect django.forms to bootstrap for better styling
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your book name here...'}),
             'author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter author name here...'}),
-            'genre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your list of genre name here...'}),
-            'rating': forms.NumberInput(attrs={'class': 'form-control'}),
-            
+            'genre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your list of genre name here...'}),  
+            'image': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Please upload an image of your book...'}),  
         }

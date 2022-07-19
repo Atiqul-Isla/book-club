@@ -1,16 +1,18 @@
 ## Django.views.generic libraries for CRUD functionality
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, FormView
+from django.views.generic.detail import DetailView
+from django.views import View
 
 ## Functins that render views and redirect users
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 ## Importing personally created models and forms
 from . import models
 from . import forms
 
 ## Djang.urls for redirecting
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 ## Django.contrib.auth libraries for user authentication
 from django.contrib.auth.views import LoginView
@@ -18,6 +20,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+
 
 
 
@@ -59,7 +62,6 @@ class home(LoginRequiredMixin, ListView):
     template_name = 'backend/home.html'
     model = models.Room 
     context_object_name = 'rooms'
-
 
 ## Class based view used in order to get context data in which the rooms model is filtered by the user
 ## LoginRequiredMixin serves the same purpose as the @login_required decorator()
@@ -109,9 +111,23 @@ class updateRoom(LoginRequiredMixin, UpdateView):
         form.instance.host = self.request.user
         return super(updateRoom, self).form_valid(form)
 
-@login_required()
-def ChatRoom(request, pk):
-    return render(request, 'backend/lobby.html', {'pk':pk})
+# @login_required()
+# def ChatRoom(request, pk):
+#     return render(request, 'backend/lobby.html', {'pk':pk})
+
+
+class ChatRoom(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        room = models.Room.objects.filter(id=pk).first()
+        chats = []
+
+        if room:
+            chats = models.Message.objects.filter(room=room)
+        else:
+            room = models.Room(id=pk)
+            room.save()
+
+        return render(request, 'backend/lobby.html', {'pk':pk, 'chats': chats})
 
 class RegisterBook(LoginRequiredMixin, CreateView):
     template_name = 'backend/create.html'
@@ -140,3 +156,4 @@ def DeleteBook(request, pk):
         book.delete()
         return redirect('my-books')
     return render(request, 'backend/delete.html', context)
+
