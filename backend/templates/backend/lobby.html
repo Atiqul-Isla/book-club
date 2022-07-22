@@ -7,11 +7,11 @@
                 <form>
                     <div class="form-group">
                     <label for="exampleFormControlTextarea1" class="h4 pt-5">Chatroom</label>
-                    <textarea class="form-control" id="chat-text" rows="20" readonly>
+<textarea class="form-control" id="chat-text" rows="20" cols='0' readonly>
 {% for chat in chats.all %}
 {{chat.user}}: {{ chat.message }} 
 {% endfor %}
-                    </textarea><br>
+</textarea><br>
                     </div>
                     <div class="form-group">
                         <input class="form-control" id="input" type="text"></br>
@@ -49,6 +49,8 @@
             '/'
         );
 
+        document.getElementById('chat-text').scrollTop =  document.getElementById('chat-text').scrollHeight
+
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
             // const messageElement = document.createElement('div')
@@ -59,9 +61,18 @@
             // userElement.className = 'username'
             // ChatLog.appendChild(userElement + messageElement)
             console.log(data)
-            document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n')
+            document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n' + '\n')
+            document.querySelector('#chat-text').className = 'form-control'
+            document.getElementById("chat-text").scrollTop = document.getElementById("chat-text").scrollHeight 
+            document.getElementById('input').addEventListener('keypress', function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                 }   
+            });
 
         }
+
+        
 
     </script>
 {% endblock page %}
