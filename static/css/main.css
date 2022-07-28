@@ -76,8 +76,7 @@ body{
   } 
 
 .column-register{ 
-    width: 400px;
-    margin: 30vh auto;
+    margin: 30vh 30vw;
     padding: 25px;
     background-color: var(--primary);
     border-radius: 3px;

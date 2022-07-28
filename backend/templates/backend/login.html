@@ -9,7 +9,7 @@
                 <form method="POST" action="">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <input type="submit" value="log in" class="center">
+                    <input  class="btn btn-primary" type="submit" value="log in" class="center">
                     <hr>
                     <a href="{% url 'landing-page' %}">Nevermind, take me back</a>
                     

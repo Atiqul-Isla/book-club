@@ -6,7 +6,7 @@
             <div class="col-lg-8">
                 <form>
                     <div class="form-group">
-                    <label for="exampleFormControlTextarea1" class="h4 pt-5">Chatroom</label>
+                    <label for="exampleFormControlTextarea1" class="h4 pt-5">Chat Room</label>
 <textarea class="form-control" id="chat-text" rows="20" cols='0' readonly>
 {% for chat in chats.all %}
 {{chat.user}}: {{ chat.message }} 
@@ -53,13 +53,6 @@
 
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
-            // const messageElement = document.createElement('div')
-            // const userElement = document.createElement('div')
-            // messageElement.innerText = data.message
-            // userElement.innerText = data.user_username
-            // messageElement.className = 'message'
-            // userElement.className = 'username'
-            // ChatLog.appendChild(userElement + messageElement)
             console.log(data)
             document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n' + '\n')
             document.querySelector('#chat-text').className = 'form-control'
