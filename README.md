@@ -1,6 +1,3 @@
-# See the website:
-https://youtu.be/RZlSB_z99eg
-
 # book-club
 A social media app in which different users all over the world can discuss certain topics or ideas about books. 
 
@@ -38,5 +35,5 @@ I learned much from tackeling this process.
 
 # Conclusion
 
-I still have bigger plans for this app, but at the moment I am satisfied with the new challenges I overcame and what I have learned overrall my creating the app. I would still like to work on this app in the future but I also want to create even newer applications with the Django framework. I will revisit this app at a later date. If you would like to see the app as it's not deployed yet, a link to a quick unlisted youtube video is at the top of this page. 
+I still have bigger plans for this app, but at the moment I am satisfied with the new challenges I overcame and what I have learned overrall my creating the app. I would still like to work on this app in the future but I also want to create even newer applications with the Django framework. I will revisit this app at a later date. 
 
