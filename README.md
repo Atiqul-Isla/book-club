@@ -18,22 +18,3 @@ Using Python/Django channels and web-sockets, consumers were created to set the 
 All messages are stored in the database using the database_sync_to_async() function. This can be seen by the superuser in the Django Admin panel.
 
 JavaScript was used to recieve and send the messages from the frontend. HTML, CSS and Bootstrap was used to design the overrall layout of the webapp.
-
-# Takeaways 
-
-I learned much from tackeling this process.
-
-- In a general sense I got more of a feel for website creation and overrall learned more about the software development process.
-- In a more specific sense I got to work with complex databases, channels, websockets, async functions, javascript, static files, and more complex django    website design.
-
-# Areas for improvement:
-
-- Deployment of the App (Haven't found the time yet to deploy this app to Heroku as the process is a bit more complex than simpler apps)
-- Addition of a favourites function, so chatrooms can be saved
-- A search option to search posts or books
-- A friends option so users can add friends and view their chat-rooms
-
-# Conclusion
-
-I still have bigger plans for this app, but at the moment I am satisfied with the new challenges I overcame and what I have learned overrall my creating the app. I would still like to work on this app in the future but I also want to create even newer applications with the Django framework. I will revisit this app at a later date. 
-
